@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Data Science - 人工智能与数据科学解决方案</title>
+    <meta name="description" content="专注AI数据科学服务，提供机器学习、数据分析、大数据挖掘、AI模型部署等一站式解决方案，助力企业数据驱动决策。">
+    <meta name="keywords" content="AI数据科学,机器学习,数据分析,大数据挖掘,AI模型部署,数据驱动">
+    <!-- 引入Bootstrap实现响应式布局（无需本地下载，CDN直接加载） -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- 引入图标库 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+        /* 自定义样式 */
+        body {
+            font-family: "Microsoft YaHei", sans-serif;
+            scroll-behavior: smooth;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        .navbar {
+            background-color: #0f172a !important;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .hero {
+            height: 90vh;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #0f172a;
+        }
+        .section-title::after {
+            content: "";
+            width: 80px;
+            height: 4px;
+            background-color: #3b82f6;
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        .service-card, .case-card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        .service-card:hover, .case-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+        }
+        .service-card i {
+            font-size: 2.5rem;
+            color: #3b82f6;
+            margin-bottom: 1.5rem;
+        }
+        .btn-primary {
+            background-color: #3b82f6;
+            border-color: #3b82f6;
+            padding: 10px 30px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #2563eb;
+            border-color: #2563eb;
+            transform: translateY(-2px);
+        }
+        .btn-outline-light {
+            border-radius: 50px;
+            padding: 10px 30px;
+            font-size: 1.1rem;
+            margin-left: 1rem;
+        }
+        .about, .blog, .contact {
+            padding: 8rem 0;
+        }
+        .services, .cases {
+            padding: 8rem 0;
+            background-color: white;
+        }
+        .footer {
+            background-color: #0f172a;
+            color: white;
+            padding: 5rem 0 2rem;
+        }
+        .footer a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer a:hover {
+            color: #3b82f6;
+        }
+        .form-control {
+            border-radius: 50px;
+            padding: 15px 20px;
+            border: 1px solid #e2e8f0;
+        }
+        /* 响应式适配 */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            .btn-outline-light {
+                margin-left: 0;
+                margin-top: 1rem;
+            }
+            .about, .services, .cases, .blog, .contact {
+                padding: 4rem 0;
+            }
+        }
+    </style>
+
+    <!-- 【核心】GA4 跟踪代码 - 已替换为ID：13380491332 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-13380491332"></script>
+    <script>
+        // GA4 基础配置
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-13380491332'); // 已替换为你的GA4 ID
+
+        // GA4 自定义事件封装 - 方便调用
+        function ga4TrackEvent(eventName, eventParams) {
+            gtag('event', eventName, eventParams);
+            console.log('GA4事件触发：', eventName, eventParams); // 调试用，可删除
+        }
+    </script>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand fs-4 fw-bold" href="#home" onclick="ga4TrackEvent('nav_click',{nav_item:'首页'})">AI Data Science</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home" onclick="ga4TrackEvent('nav_click',{nav_item:'首页'})">首页</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about" onclick="ga4TrackEvent('nav_click',{nav_item:'关于我们'})">关于我们</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services" onclick="ga4TrackEvent('nav_click',{nav_item:'核心服务'})">核心服务</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#cases" onclick="ga4TrackEvent('nav_click',{nav_item:'成功案例'})">成功案例</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#blog" onclick="ga4TrackEvent('nav_click',{nav_item:'技术博客'})">技术博客</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact" onclick="ga4TrackEvent('nav_click',{nav_item:'联系我们'})">联系我们</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 英雄区 -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-7">
+                    <h1>人工智能与数据科学<br>驱动企业数智化转型</h1>
+                    <p>融合机器学习、大数据挖掘、深度学习技术，为企业提供定制化AI数据解决方案，从数据中挖掘价值，让决策更科学。</p>
+                    <button class="btn btn-primary" onclick="ga4TrackEvent('hero_click',{button_type:'立即咨询'})">立即咨询</button>
+                    <button class="btn btn-outline-light" onclick="ga4TrackEvent('hero_click',{button_type:'查看服务'})">查看服务</button>
+                </div>
+                <div class="col-lg-5 d-none d-lg-block">
+                    <img src="https://picsum.photos/600/400?random=1" alt="AI数据科学可视化" class="img-fluid rounded-3">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于我们 -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>关于我们</h2>
+                <p>专注AI数据科学领域，用技术赋能企业成长</p>
+            </div>
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <img src="https://picsum.photos/600/400?random=2" alt="AI数据科学团队" class="img-fluid rounded-3 shadow">
+                </div>
+                <div class="col-lg-6 mt-5 mt-lg-0">
+                    <h3 class="fw-bold mb-4">我们的核心优势</h3>
+                    <p class="mb-4">团队由海内外资深数据科学家、机器学习工程师组成，平均拥有8年以上AI数据领域实战经验，服务过金融、电商、制造、医疗等多个行业的头部企业。</p>
+                    <ul class="list-unstyled">
+                        <li class="mb-3"><i class="bi bi-check-circle text-primary me-2"></i> 定制化解决方案，贴合企业实际业务场景</li>
+                        <li class="mb-3"><i class="bi bi-check-circle text-primary me-2"></i> 端到端服务，从数据采集到模型部署全流程落地</li>
+                        <li class="mb-3"><i class="bi bi-check-circle text-primary me-2"></i> 持续技术迭代，紧跟AI前沿技术（大模型、AIGC等）</li>
+                        <li class="mb-3"><i class="bi bi-check-circle text-primary me-2"></i> 专业售后支持，保障模型稳定运行与效果优化</li>
+                    </ul>
+                    <button class="btn btn-primary mt-3" onclick="ga4TrackEvent('about_click',{button_type:'了解团队'})">了解团队</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心服务 -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>核心服务</h2>
+                <p>覆盖AI数据科学全产业链，满足企业多样化需求</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="card service-card p-4">
+                        <div class="card-body text-center">
+                            <i class="bi bi-bar-chart-line"></i>
+                            <h5 class="card-title fw-bold mb-3">大数据分析与挖掘</h5>
+                            <p class="card-text">海量数据清洗、特征工程、关联分析，挖掘数据背后的业务规律，为企业决策提供数据支撑。</p>
+                            <button class="btn btn-primary mt-2" onclick="ga4TrackEvent('service_click',{service_name:'大数据分析与挖掘'})">详情</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card service-card p-4">
+                        <div class="card-body text-center">
+                            <i class="bi bi-brain"></i>
+                            <h5 class="card-title fw-bold mb-3">机器学习模型开发</h5>
+                            <p class="card-text">回归、分类、聚类等经典模型定制开发，适配客户业务场景，实现预测、识别、分群等功能。</p>
+                            <button class="btn btn-primary mt-2" onclick="ga4TrackEvent('service_click',{service_name:'机器学习模型开发'})">详情</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card service-card p-4">
+                        <div class="card-body text-center">
+                            <i class="bi bi-robot"></i>
+                            <h5 class="card-title fw-bold mb-3">大模型定制与部署</h5>
+                            <p class="card-text">开源大模型微调、私有化部署、大模型应用开发（智能问答、文本生成、数据分析助手）。</p>
+                            <button class="btn btn-primary mt-2" onclick="ga4TrackEvent('service_click',{service_name:'大模型定制与部署'})">详情</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card service-card p-4">
+                        <div class="card-body text-center">
+                            <i class="bi bi-cloud-upload"></i>
+                            <h5 class="card-title fw-bold mb-3">AI模型云端部署</h5>
+                            <p class="card-text">模型容器化、云端服务部署、接口开发，让AI模型快速对接企业现有系统，实现轻量化调用。</p>
+                            <button class="btn btn-primary mt-2" onclick="ga4TrackEvent('service_click',{service_name:'AI模型云端部署'})">详情</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card service-card p-4">
+                        <div class="card-body text-center">
+                            <i class="bi bi-file-earmark-bar-graph"></i>
+                            <h5 class="card-title fw-bold mb-3">数据可视化开发</h5>
+                            <p class="card-text">定制化数据大屏、交互式可视化报表，让企业数据更直观，实现数据监控与实时分析。</p>
+                            <button class="btn btn-primary mt-2" onclick="ga4TrackEvent('service_click',{service_name:'数据可视化开发'})">详情</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card service-card p-4">
+                        <div class="card-body text-center">
+                            <i class="bi bi-person-lines-fill"></i>
+                            <h5 class="card-title fw-bold mb-3">AI数据人才培训</h5>
+                            <p class="card-text">企业内训、定制化课程，覆盖数据分析、机器学习、大模型应用，提升企业团队数据能力。</p>
+                            <button class="btn btn-primary mt-2" onclick="ga4TrackEvent('service_click',{service_name:'AI数据人才培训'})">详情</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 成功案例 -->
+    <section class="cases" id="cases">
+        <div class="container">
+            <div class="section-title">
+                <h2>成功案例</h2>
+                <p>AI数据科学技术在各行业的落地实践</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="card case-card">
+                        <img src="https://picsum.photos/600/400?random=3" class="card-img-top rounded-top" alt="金融行业风险预测">
+                        <div class="card-body p-4">
+                            <h5 class="card-title fw-bold">金融行业 | 信贷风险预测模型</h5>
+                            <p class="card-text">为某股份制银行开发机器学习风险预测模型，将信贷逾期率降低28%，提升风控效率。</p>
+                            <button class="btn btn-primary mt-2" onclick="ga4TrackEvent('case_click',{case_name:'金融信贷风险预测'})">查看案例</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card case-card">
+                        <img src="https://picsum.photos/600/400?random=4" class="card-img-top rounded-top" alt="电商用户画像">
+                        <div class="card-body p-4">
+                            <h5 class="card-title fw-bold">电商行业 | 智能用户画像与推荐</h5>
+                            <p class="card-text">为某头部电商平台构建用户画像体系，搭配个性化推荐模型，提升商品点击率35%。</p>
+                            <button class="btn btn-primary mt-2" onclick="ga4TrackEvent('case_click',{case_name:'电商用户画像与推荐'})">查看案例</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card case-card">
+                        <img src="https://picsum.photos/600/400?random=5" class="card-img-top rounded-top" alt="制造设备预测性维护">
+                        <div class="card-body p-4">
+                            <h5 class="card-title fw-bold">制造行业 | 设备预测性维护</h5>
+                            <p class="card-text">为某制造企业开发设备故障预测模型，实现提前7天预警，减少非计划停机时间40%。</p>
+                            <button class="btn btn-primary mt-2" onclick="ga4TrackEvent('case_click',{case_name:'制造设备预测性维护'})">查看案例</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 技术博客 -->
+    <section class="blog" id="blog">
+        <div class="container">
+            <div class="section-title">
+                <h2>技术博客</h2>
+                <p>分享AI数据科学前沿技术与实战经验</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100">
+                        <img src="https://picsum.photos/300/200?random=6" class="card-img-top" alt="Python数据分析">
+                        <div class="card-body">
+                            <h6 class="text-primary">数据分析</h6>
+                            <h5 class="card-title fw-bold mt-2">Python数据分析实战：Pandas核心技巧</h5>
+                            <p class="card-text small">详细讲解Pandas数据清洗、分组、聚合的核心技巧，附实战案例代码。</p>
+                        </div>
+                        <div class="card-footer bg-white border-0">
+                            <a href="#" class="text-primary fw-bold" onclick="ga4TrackEvent('blog_click',{blog_topic:'Python Pandas技巧'})">阅读更多 <i class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100">
+                        <img src="https://picsum.photos/300/200?random=7" class="card-img-top" alt="机器学习模型优化">
+                        <div class="card-body">
+                            <h6 class="text-primary">机器学习</h6>
+                            <h5 class="card-title fw-bold mt-2">机器学习模型优化：超参数调优方法汇总</h5>
+                            <p class="card-text small">GridSearch、RandomSearch、贝叶斯优化，三种调优方法对比与实战。</p>
+                        </div>
+                        <div class="card-footer bg-white border-0">
+                            <a href="#" class="text-primary fw-bold" onclick="ga4TrackEvent('blog_click',{blog_topic:'机器学习超参数调优'})">阅读更多 <i class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100">
+                        <img src="https://picsum.photos/300/200?random=8" class="card-img-top" alt="大模型微调">
+                        <div class="card-body">
+                            <h6 class="text-primary">大模型</h6>
+                            <h5 class="card-title fw-bold mt-2">零基础入门大模型微调：LoRA方法实战</h5>
+                            <p class="card-text small">详解LoRA微调原理，基于PyTorch实现大模型轻量化微调，附完整代码。</p>
+                        </div>
+                        <div class="card-footer bg-white border-0">
+                            <a href="#" class="text-primary fw-bold" onclick="ga4TrackEvent('blog_click',{blog_topic:'大模型LoRA微调'})">阅读更多 <i class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100">
+                        <img src="https://picsum.photos/300/200?random=9" class="card-img-top" alt="数据可视化">
+                        <div class="card-body">
+                            <h6 class="text-primary">数据可视化</h6>
+                            <h5 class="card-title fw-bold mt-2">Plotly实现交互式数据可视化大屏</h5>
+                            <p class="card-text small">用Plotly开发可交互的企业数据大屏，支持多维度筛选、实时更新。</p>
+                        </div>
+                        <div class="card-footer bg-white border-0">
+                            <a href="#" class="text-primary fw-bold" onclick="ga4TrackEvent('blog_click',{blog_topic:'Plotly数据可视化'})">阅读更多 <i class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系我们 -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>联系我们</h2>
+                <p>填写表单，获取专属AI数据科学解决方案</p>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <form onsubmit="ga4TrackEvent('contact_submit',{form_type:'咨询表单'});alert('提交成功！我们将尽快与您联系～');return false;">
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="您的姓名" required>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="tel" class="form-control" placeholder="您的电话" required>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <input type="email" class="form-control" placeholder="您的邮箱" required>
+                        </div>
+                        <div class="mb-4">
+                            <select class="form-control" required>
+                                <option value="" disabled selected>选择咨询类型</option>
+                                <option value="大数据分析">大数据分析</option>
+                                <option value="机器学习模型">机器学习模型</option>
+                                <option value="大模型定制">大模型定制</option>
+                                <option value="数据可视化">数据可视化</option>
+                                <option value="其他">其他</option>
+                            </select>
+                        </div>
+                        <div class="mb-4">
+                            <textarea class="form-control" rows="5" placeholder="您的需求描述" required></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary btn-lg">提交咨询</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row g-5 mb-5">
+                <div class="col-md-4 col-lg-3">
+                    <h5 class="fw-bold mb-4">AI Data Science</h5>
+                    <p>用AI数据科学技术，为企业打造数智化核心竞争力，让数据创造价值。</p>
+                </div>
+                <div class="col-md-4 col-lg-2">
+                    <h5 class="fw-bold mb-4">导航</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#home" onclick="ga4TrackEvent('footer_click',{footer_item:'首页'})">首页</a></li>
+                        <li class="mb-2"><a href="#about" onclick="ga4TrackEvent('footer_click',{footer_item:'关于我们'})">关于我们</a></li>
+                        <li class="mb-2"><a href="#services" onclick="ga4TrackEvent('footer_click',{footer_item:'核心服务'})">核心服务</a></li>
+                        <li class="mb-2"><a href="#cases" onclick="ga4TrackEvent('footer_click',{footer_item:'成功案例'})">成功案例</a></li>
+                        <li class="mb-2"><a href="#blog" onclick="ga4TrackEvent('footer_click',{footer_item:'技术博客'})">技术博客</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 col-lg-3">
+                    <h5 class="fw-bold mb-4">服务</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#">大数据分析</a></li>
+                        <li class="mb-2"><a href="#">机器学习模型</a></li>
+                        <li class="mb-2"><a href="#">大模型定制</a></li>
+                        <li class="mb-2"><a href="#">AI模型部署</a></li>
+                        <li class="mb-2"><a href="#">数据可视化</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-12 col-lg-4">
+                    <h5 class="fw-bold mb-4">订阅技术周刊</h5>
+                    <p>每周推送AI数据科学前沿技术、实战案例、学习资源。</p>
+                    <form class="d-flex" onsubmit="ga4TrackEvent('subscribe_submit',{form_type:'技术周刊'});alert('订阅成功！');return false;">
+                        <input type="email" class="form-control me-2" placeholder="您的邮箱" required>
+                        <button type="submit" class="btn btn-primary">订阅</button>
+                    </form>
+                </div>
+            </div>
+            <div class="border-top border-secondary-subtle pt-5 text-center">
+                <p>© 2025 AI Data Science. 保留所有权利。</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 引入Bootstrap JS（实现导航折叠、交互） -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- 平滑滚动 -->
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
